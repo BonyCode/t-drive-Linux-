@@ -1,54 +1,109 @@
-![img](./logoteledrive-white.png)
+# t-drive-Linux-
 
-This is the open source project of Google Drive/OneDrive/iCloud/Dropbox alternative using Telegram API for the free unlimited cloud storage.
+**t-drive-Linux-** — это десктопное приложение для хранения файлов, разработанное на основе оригинального проекта [t-drive](https://github.com/h4MeMengoding/t-drive). Мы переписали проект на Java и адаптировали его к Linux, используя **Electron** для графического интерфейса. Теперь пользователи Linux могут воспользоваться функционалом неограниченного облачного хранилища, работающего через Telegram.
 
-[![img](https://drive.google.com/uc?id=1o2HnKglEF0-cvtNmQqWZicJnSCSmnoEr)](https://twitter.com/telegram/status/1428703364737507332)
+## Что такое t-drive-Linux-?
 
-## Motivation
+Это приложение предназначено для тех, кто хочет получить неограниченное облачное хранилище, используя Telegram в качестве основного сервиса для хранения файлов. Если у вас есть аккаунт Telegram, вы можете хранить и организовывать свои файлы, не беспокоясь о пространстве и безопасности.
 
-- [Google Photos ends the free storage service](https://www.techradar.com/news/google-photos-price)
-- We deserve the free cloud storage service! Pricing: [Google Drive](https://one.google.com/about/plans), [OneDrive](https://one.google.com/about/plans), [Dropbox](https://www.dropbox.com/individual/plans-comparison), [iCloud](https://support.apple.com/en-us/HT201238)
+Мы адаптировали проект **t-drive** и сделали его совместимым с Linux, полностью переписав серверную часть на Java. **t-drive-Linux-** позволяет пользователям легко загружать, управлять и получать доступ к своим файлам через привычный и удобный интерфейс на Electron.
 
+## Основные возможности
 
-## Getting Started
+- **Бесплатное и неограниченное хранилище**: Telegram предоставляет почти неограниченное место для хранения данных, что позволяет использовать приложение без дополнительных затрат.
+- **Графический интерфейс на Electron**: Удобный и интуитивно понятный интерфейс для управления файлами, адаптированный под рабочий стол Linux.
+- **Управление файлами**: Создание папок, перемещение файлов, переименование, удаление и сортировка.
+- **Поддержка тёмной и светлой тем**: Лёгкое переключение между темами интерфейса для удобства использования.
+- **Интеграция с Telegram**: Безопасное хранение данных и аутентификация через Telegram API, обеспечивающая доступ к вашим файлам только для вас.
+- **Настраиваемые иконки папок**: Вы можете изменять цвет папок для удобства навигации.
 
-Read here for full instructions: [teledriveapp.com](https://teledriveapp.com)
+## Как это работает
 
-## API Documentation
+1. **Telegram API**: Приложение использует Telegram для хранения файлов. Ваши данные передаются и хранятся в облаке Telegram, поэтому вы получаете бесплатный и надёжный доступ к вашим файлам.
+2. **Серверная часть на Java**: Мы переписали серверную логику на Java, чтобы обеспечить стабильную и быструю работу на Linux. Java-часть отвечает за взаимодействие с Telegram API, управление файлами и организацию данных.
+3. **Интерфейс на Electron**: Мы создали графический интерфейс, похожий на привычный файловый менеджер. Через интерфейс вы можете управлять своими файлами, организовывать их и настраивать внешний вид.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/restfireteam/workspace/mgilangjanuar/collection/1778529-3e4b0f8d-f721-4055-8d30-33cacaea93e6?ctx=documentation)
+## Установка и запуск
 
-## How to Contribute
+### Требования
 
-- Fork and clone this repository
-- Commit your changes
-- Create a pull request to the `staging` branch
+- **Java 17** или выше
+- **Node.js** и **npm** для работы с интерфейсом на Electron
+- **Telegram API Token** — это ключ, необходимый для работы с вашим аккаунтом Telegram. Получить его можно через [BotFather](https://core.telegram.org/bots#botfather) в Telegram.
 
-Or, just send us an [issue](https://github.com/mgilangjanuar/teledrive/issues) for reporting bugs and/or ask the questions, share your ideas, etc in [discussions](https://github.com/mgilangjanuar/teledrive/discussions).
+### Шаги установки
 
-## Deploy to Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/mgilangjanuar/teledrive)
+1. **Скачайте проект** с GitHub:
 
-## Folder Structure
+    ```bash
+    git clone https://github.com/BonyCode/t-drive-Linux-.git
+    cd t-drive-Linux-
+    ```
 
-We using the monorepo structure with [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/).
+2. **Соберите серверную часть на Java**:
 
-```
-.
-├── README.md
-├── package.json
-├── server
-│   ├── package.json
-│   ├── src
-│   │   └── index.ts
-│   └── tsconfig.json
-├── web
-│   ├── package.json
-│   ├── public
-│   ├── src
-│   │   ├── pages
-│   │   └── App.tsx
-│   ├── tsconfig.json
-│   └── yarn.lock
-└── yarn.lock
-```
+    В корневой папке проекта выполните команду для сборки:
+
+    ```bash
+    ./gradlew build
+    ```
+
+3. **Установите зависимости для интерфейса**:
+
+    Перейдите в папку `frontend/` и установите необходимые пакеты для Electron:
+
+    ```bash
+    cd frontend
+    npm install
+    ```
+
+4. **Запустите сервер и интерфейс**:
+
+    В корневой папке запустите сервер и интерфейс:
+
+    ```bash
+    # Запуск серверной части
+    ./gradlew bootRun
+    
+    # Запуск интерфейса
+    cd frontend
+    npm start
+    ```
+
+5. **Настройте Telegram API Token**:
+
+    Откройте файл `application.properties` в серверной части и вставьте туда свой токен для работы с Telegram API.
+
+## Как пользоваться
+
+1. **Запустите приложение**, следуя инструкциям выше.
+2. **Войдите через Telegram** — после запуска вы увидите запрос на авторизацию через Telegram.
+3. **Загружайте файлы** — добавляйте свои файлы, создавайте папки, перемещайте и удаляйте файлы по мере необходимости.
+4. **Настройте интерфейс** — выбирайте светлую или тёмную тему для удобства, настраивайте иконки папок и сортируйте файлы, как вам удобно.
+
+## Пример интерфейса
+
+### Тёмная тема
+![Dark Theme](https://github.com/BonyCode/t-drive-Linux-/raw/main/screenshots/dark-theme.png)
+
+### Светлая тема
+![Light Theme](https://github.com/BonyCode/t-drive-Linux-/raw/main/screenshots/light-theme.png)
+
+## Часто задаваемые вопросы
+
+**Почему Telegram используется для хранения файлов?**  
+Telegram предоставляет бесплатное и практически неограниченное пространство для данных. Это позволяет вам не беспокоиться о платных хранилищах.
+
+**Для каких операционных систем доступно приложение?**  
+На данный момент **t-drive-Linux-** адаптировано для Linux. Однако, так как приложение написано на Electron и Java, его можно доработать и для других операционных систем.
+
+**Как обеспечивается безопасность моих файлов?**  
+Все файлы хранятся в вашем Telegram аккаунте, доступ к которому имеете только вы. Приложение использует ваш личный API токен для аутентификации.
+
+## Вклад и поддержка
+
+Мы открыты для предложений и вкладов от сообщества. Если у вас есть идеи, как улучшить **t-drive-Linux-**, или вы нашли баг, создайте issue или отправьте pull request. Будем рады вашему участию!
+
+## Лицензия
+
+Проект распространяется под лицензией MIT. Полные условия можно найти в файле [LICENSE](./LICENSE).
